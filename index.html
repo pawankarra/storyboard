@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<title>miniPaint - image editor</title>
+	<meta name="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="keywords" content="photo, image, picture, transparent, layers, free, edit, html5, canvas, javascript, online, photoshop, gimp, effects, sharpen, blur, magic wand tool, clone tool, rotate, resize, photoshop online, online tools, tilt shift, sprites, keypoints" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" href="images/favicon.png?v2" />
+	<!-- Google -->
+	<meta itemprop="name" content="miniPaint" />
+	<meta itemprop="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta itemprop="image" content="http://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="miniPaint" />
+	<meta name="twitter:description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="twitter:image" content="http://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<meta name="twitter:image:alt" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<!-- Facebook, Pinterest -->
+	<meta property="og:title" content="miniPaint" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://viliusle.github.io/miniPaint/" />
+	<meta property="og:image" content="http://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<meta property="og:description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta property="og:site_name" content="miniPaint" />
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="dist/bundle.js"></script>
+</head>
+<body style="background-color:#E5E9E7;">
+	<div class="wrapper">
+		
+		<div id="myNav" class="overlay left">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<div class="overlay-content">
+			  <input type="text" id="search-text" placeholder="So, whats on your mind?">
+			  <span class="searchbtn">&ogt;</span>
+			  <div class="theme-list" id="theme-list"></div>
+			</div>
+		  </div>
+		
+		  <div id="layout" class="hidden">
+			<!--Include a header DIV with the same name as the draggable DIV, followed by "header":-->
+			<div id="layoutheader">Layout Options
+				<i class="glyphicon glyphicon-remove"></i>
+			</div>
+			<div id="layoutbody"></div>
+		  </div>
+
+		<nav id="sidebar" class="active">
+		<!--	<div class="sidebar-header">
+				<strong>SN</strong>
+			</div>
+		-->
+			<ul class="list-unstyled components">
+					<li>
+							<a href="#" id="newtemplate">
+								<i class="glyphicon glyphicon-plus"></i>
+								New
+							</a>
+						</li>
+				<li>
+						<a href="#" id="imagesearch">
+							<i class="glyphicon glyphicon-search"></i>
+							Search
+						</a>
+					</li>
+					<li>
+							<a href="#" id="select">
+								<i class="glyphicon glyphicon-edit"></i>
+								Edit
+							</a>
+					</li>					
+				<li id="template">
+					<a href="#" id="layoutsearch">
+						<i class="glyphicon glyphicon-duplicate"></i>
+						Layouts
+					</a>
+				</li>
+				<li id="">
+						<a href="#">
+							<i class="glyphicon glyphicon-edit"></i>
+							Elements
+						</a>
+					</li>
+				<li>
+					<a href="#">
+						<i class="glyphicon glyphicon-text-height"></i>
+						Text
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="glyphicon glyphicon-link"></i>
+						Links
+					</a>
+				</li>
+				<li data-toggle="modal" data-target="#exampleModalCenter">
+					<a href="#">
+						<i class="glyphicon glyphicon-cloud-upload"></i>
+						Uploads
+					</a>
+				</li>
+			</ul>
+
+			</nav>
+
+			<div class="sub-tab hidden">
+			</div>
+
+			<div class="sub-win" id="subwin-wrapper" hidden>
+					<div class="subwin-layout" id="subwin-layout">
+					</div>
+			</div>
+		
+
+			<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+					Launch demo modal
+				  </button> -->
+				  
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Upload Photos</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+					<div class="bgColor">
+								<div id="targetOuter">
+									<div id="targetLayer"></div>
+									<div class="display-image">
+										<ul class="image-lister">
+										</ul>
+									</div>
+									<div class="icon-choose-image" style="clear:both;">
+										<input name="userImage" id="userImage" type="file" class="inputFile" multiple/>
+									</div>
+								</div>
+								<div>
+									<input type="submit" value="Upload Photo" class="btnSubmit" />
+								</div>
+						</div>
+						<!--<div class="input-group" style="display:none;">
+								<input type="text" class="form-control" placeholder="Add Custom Tags" name="search" hidden>
+								<div class="input-group-btn">
+								  <button class="btn btn-default" id="tag-update" type="submit"><i class="glyphicon glyphicon-plus"></i></button>
+								</div>
+						</div>-->
+
+			</div>
+			<div class="modal-footer">
+				<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+				<button type="submit" class="btn btn-primary" id="img-update">UPDATE</button>
+			</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="submenu" hidden>
+			<a class="logo" href="">miniPaint</a>
+			<div class="block attributes" id="action_attributes"></div>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="sidebar_left hidden" id="tools_container"></div>
+		
+		<div class="main_wrapper" id="main_wrapper">
+			<div class="canvas_wrapper" id="canvas_wrapper">
+				<div id="mouse"></div>
+				<div class="transparent-grid" id="canvas_minipaint_background"></div>
+				<canvas id="canvas_minipaint">
+					<div class="trn error">
+						Your browser does not support canvas or JavaScript is not enabled.
+					</div>
+				</canvas>
+			</div>
+<!--			<div class="canvas_wrapper1" id="canvas_wrapper1">
+				<div id="mouse"></div>
+				<div class="transparent-grid" id="canvas_minipaint_background"></div>
+				<canvas id="canvas_minipaint">
+					<div class="trn error">
+						Your browser does not support canvas or JavaScript is not enabled.
+					</div>
+				</canvas>
+			</div>-->
+		</div>
+		<div class="image-header">
+			<div class="img-header">
+				<div class="head-left sizer">
+				</div>
+				<div class="head-center sizer">
+					<span>Photos</span>
+				</div>
+				<div class="head-right sizer">
+					<div class="head-right-span" data-toggle="modal" data-target="#exampleModalCenter" hidden>
+						<span>Add Photos</span>
+					</div>
+				</div>	
+			</div>
+			<div class="image-bar" id="image-wrapper">
+			</div>
+		</div>
+
+		
+
+		<div class="sidebar_right hidden">
+			<div class="preview block" hidden>
+				<h2 class="trn toggle" data-target="toggle_preview">Preview</h2>
+				<div id="toggle_preview"></div>
+			</div>
+			
+			<div class="colors block">
+				<h2 class="trn toggle" data-target="toggle_colors">Colors</h2>
+				<input
+					title="Click to change color" 
+					type="color" 
+					class="color_area" 
+					id="main_color" 
+					value="#0000ff"	/>
+				<div class="content" id="toggle_colors"></div>
+			</div>
+			
+			<div class="block" id="info_base" hidden>
+				<h2 class="trn toggle toggle-full" data-target="toggle_info">Information</h2>
+				<div class="content" id="toggle_info"></div>
+			</div>
+			
+			<div class="details block" id="details_base" hidden>
+				<h2 class="trn toggle toggle-full" data-target="toggle_details">Layer details</h2>
+				<div class="content" id="toggle_details"></div>
+			</div>
+			
+			<div class="layers block" >
+				<h2 class="trn">Layers</h2>
+				<div class="content" id="layers_base"></div>
+			</div>
+		</div>
+	</div>
+	<div class="mobile_menu">
+		<button class="right_mobile_menu" id="mobile_menu_button" type="button"></button>
+	</div>
+	<div class="ddsmoothmenu" id="main_menu"></div>
+	<div class="smoothmenu" id="nav_menu">
+		<div id="product-logo" style="float:left;">
+			<img src="/images/layers.png">
+		</div>
+		<div id="blank" style="width:20%;float:left;border:1px solid #FFFFFF;">
+		</div>
+		<div class="tab-center">
+			<ul>
+				<li>
+					<a href="#" id="savefile">
+						<i class="glyphicon glyphicon-floppy-disk"></i>
+							Save
+					</a>
+				</li>
+				<li>
+					<a href="#" id="undo">
+						<i class="glyphicon glyphicon-repeat"></i>
+							Undo
+					</a>
+				</li>
+				<li>
+					<a href="#" id="redo">
+						<i class="glyphicon glyphicon-refresh" ></i>
+							Redo
+					</a>
+				</li>
+				<li>
+					<a href="#" id="newtemplate">
+						<i class="glyphicon glyphicon-resize-small"></i>
+							Resize
+					</a>
+				</li>
+				<li>
+					<a href="#" id="newtemplate">
+						<i class="glyphicon glyphicon-download-alt"></i>
+							Download
+					</a>
+				</li>			
+				<li>
+					<a href="#" id="newtemplate">
+						<i class="glyphicon glyphicon-send"></i>
+							Share
+					</a>
+				</li>
+				<li>
+						<a href="#" id="printemplate">
+							<i class="glyphicon glyphicon-print"></i>
+								Print
+						</a>
+					</li>
+			</ul>
+		</div>
+		<div class="tab-right">
+				<ul>
+					<li>
+						<div class="l-btn">
+							<span>Help</span>
+							<i class="glyphicon glyphicon-chevron-down" id="btn"></i>
+						</div>
+					</li>
+					<li>
+							<div class="r-btn">
+								<span>My Account</span>
+								<i class="glyphicon glyphicon-chevron-down" id="btn"></i>
+							</div>
+						</li>
+				</ul>	
+		</div>	
+	</div>
+	<div class="hidden" id="tmp"></div>
+	<div id="popup"></div>
+</body>
+</html>

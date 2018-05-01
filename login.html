@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+
+<style>
+html,
+body {
+    height: 100%;
+    width:100%;
+}
+            body{
+                font-family: Omnes_ATT;
+                position: relative;
+                background: linear-gradient(
+                     rgba(20,20,20, .85), 
+                     rgba(20,20,20, .85)),
+                     url("/images/infofraphic.png");
+                /*background-image: url("infofraphic.png");*/
+                background-repeat:no-repeat;
+                background-size:100% 100%;
+                /*background: url('infofraphic.png') no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;*/
+            }            
+html {
+    display: table;
+    margin: auto;
+}
+.margin {
+  margin: 0 !important;
+}
+</style>
+  
+</head>
+
+<body>
+
+
+  <div id="login-page" class="row">
+    <div class="col s4 z-depth-6 card-panel offset-m4" style="margin-top:8%;border-radius:10px;">
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="logo.png" alt="" class="responsive-img valign profile-image-login">
+            <p class="center login-form-text">N3N - Login Form</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input class="validate" id="email" type="email">
+            <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="password" type="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">          
+          <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Remember me</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <a class="btn waves-effect waves-light col s12" id="logButton">Login</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small" id="register">Register Now!</p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small" id="forgot">Forgot password?</p>
+          </div>          
+        </div>
+
+      </form>
+    </div>
+  </div>
+    
+    
+    
+  <div id="reg-page" class="row" hidden>
+    <div class="col s4 z-depth-6 card-panel offset-m4" style="margin-top:8%;border-radius:10px;">
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="logo.png" alt="" class="responsive-img valign profile-image-login">
+            <p class="center login-form-text">W3lessons - Material Design SignUp Form</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input id="username" type="text" class="validate">
+            <label for="username" class="center-align">Username</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-communication-email prefix"></i>
+            <input id="regemail" type="email" class="validate">
+            <label for="email" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="regpassword" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="password-again" type="password">
+            <label for="password-again">Re-type password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <a class="btn waves-effect waves-light col s12" id="regButton">Register Now</a>
+          </div>
+          <div class="input-field col s12">
+            <p class="margin center medium-small sign-up">Already have an account? <span id="login">Login</span></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>    
+    
+ <div id="forgot-page" class="row" hidden>
+    <div class="col s4 z-depth-6 card-panel offset-m4" style="margin-top:8%;border-radius:10px;">
+      <form class="login-form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <img src="logo.png" alt="" class="responsive-img valign profile-image-login">
+            <p class="center login-form-text">W3lessons - Material Design Forgot Password Form</p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input class="validate" id="email" type="email">
+            <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <a href="forgot-password.html" class="btn waves-effect waves-light col s12">Recover my Password</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small" id="register1">Register Now!</p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small" id="login1">Login</p>
+          </div>          
+        </div>
+
+      </form>
+    </div>
+  </div>
+    
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        $('#logButton').click(function(){
+                    console.log($('#email').val());
+                    var obj = new Object();
+                    obj.user = $('#email').val();
+                    obj.pwd = $('#password').val();
+                    var url="http://ec2-54-186-153-173.us-west-2.compute.amazonaws.com:9000/n3n/cloud/app/login";
+                    console.log(obj);
+                    $.post(url, JSON.stringify(obj), function(status){
+                        console.log(status);
+                        if(status=='success'){
+                          window.location.replace("/index.html");
+                        }
+                    });
+        });
+        
+        $('#regButton').click(function(){
+                    var obj = new Object();
+                    obj.user = $('#regemail').val();
+                    obj.pwd = $('#regpassword').val();
+                    console.log(obj)
+                    var url="http://ec2-54-186-153-173.us-west-2.compute.amazonaws.com:9000/n3n/cloud/app/signup";
+                    $.post(url, JSON.stringify(obj), function(status){
+                        console.log(status);
+                        if(status=='verification sent'){
+                            $('#login-page').show();
+                            $('#reg-page').hide();
+                            $('#forgot-page').hide();
+                        }
+                    });
+        });
+        
+        $('#register').click(function(){
+            $('#login-page').hide();
+            $('#reg-page').show();
+            $('#forgot-page').hide();
+        });
+        $('#register1').click(function(){
+            $('#login-page').hide();
+            $('#reg-page').show();
+            $('#forgot-page').hide();
+        });
+        $('#login').click(function(){
+            $('#login-page').show();
+            $('#reg-page').hide();
+            $('#forgot-page').hide();
+        });
+        $('#login1').click(function(){
+            $('#login-page').show();
+            $('#reg-page').hide();
+            $('#forgot-page').hide();
+        });
+        $('#forgot').click(function(){
+            $('#forgot-page').show();
+            $('#reg-page').hide();
+            $('#login-page').hide();
+        });
+    });
+ </script>
+
+</body>
+
+</html>
