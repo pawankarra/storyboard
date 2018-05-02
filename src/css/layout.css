@@ -794,15 +794,16 @@ button:focus {
   }
 
 .main_wrapper{
-	height: calc(100vh - 80px);
-	margin: -680px 210px 5px 550px;
 	overflow: hidden;
+	position: absolute;
+	top: 40%;
+	bottom: 0;
+	left: calc(50% + 80px);
+	right: 0;
+	transform: translateX(calc(-50% - 40px)) translateY(-40%);
 }
 .canvas_wrapper{
-	position:relative;
-	box-shadow:
-	0 15px 30px 0 rgba(0,0,0,0.11),
-	0 5px 15px 0 rgba(0,0,0,0.08);
+	box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
 }
 .canvas_wrapper canvas{
 	/*border: 1px solid #393939;*/
@@ -812,6 +813,9 @@ button:focus {
 #canvas_minipaint{
 	position: absolute;
 	margin: 0 auto;
+	height: 100% !important;
+	width: 100% !important;
+	background: #ffffff;
 }
 .image-bar{
 	width:100%;
@@ -1061,4 +1065,16 @@ canvas{
 	.canvas_wrapper{
 		margin-left: 0px;
 	}
+}
+
+
+
+
+
+.canvas-container, 
+.upper-canvas,
+.lower-canvas {
+	position: absolute !important;
+	width: 100% !important;
+	height: 100% !important;
 }

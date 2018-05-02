@@ -23,18 +23,33 @@ class Text_class extends Base_tools_class {
 		document.addEventListener('mousedown', function (e) {
 			if (config.TOOL.name != _this.name)
 				return;
+
 			_this.mousedown(e);
 		});
+
 		document.addEventListener('mousemove', function (e) {
 			if (config.TOOL.name != _this.name)
 				return;
+
 			_this.mousemove(e);
 		});
+
 		document.addEventListener('mouseup', function (e) {
 			if (config.TOOL.name != _this.name)
 				return;
+
 			_this.mouseup(e);
 		});
+
+		document.addEventListener('dblclick', function (e) {
+			// see if the selection is equal to the current selection type
+			let selection = _this.Base_layers.Base_selection.get_selection();
+
+			if (config.TOOL.name == 'select' && selection.type == _this.name) {
+				_this.modify_params(selection.params);
+			}
+		});
+
 	}
 
 	mousedown(e) {
@@ -53,6 +68,7 @@ class Text_class extends Base_tools_class {
 			y: mouse.y,
 			rotate: null,
 		};
+
 		this.Base_layers.insert(this.layer);
 	}
 
@@ -94,21 +110,75 @@ class Text_class extends Base_tools_class {
 		config.layer.width = width;
 		config.layer.height = height;
 		this.Base_layers.render();
-		
+
 		//ask for text
-		var settings = {
+		let settings = this.create_popup_settings(params);
+
+		this.POP.show(settings);
+	}
+
+	create_popup_settings(params) {
+		return {
 			title: 'Edit text',
 			params: [
-				{name: "text", title: "Text:", value: "Text example"},
+				{
+					name: "text",
+					title: "Text:",
+					value: params.text || "Text example"
+				},
+				{
+					name: "size",
+					title: "Font Size:",
+					value: params.size,
+				},
+				{
+					name: "weight",
+					title: "Font Weight:",
+					value: params.bold
+				},
+				{
+					name: "italic",
+					title: "Italic:",
+					value: params.italic
+				},
+				{
+					name: "align",
+					title: "Alignment:",
+					value: params.align.value,
+					values: params.align.values,
+				},
+				{
+					name: "font",
+					title: "Font:",
+					value: params.family.value,
+					values: params.family.values,
+				},
+				{
+					name: "color",
+					title: "Color",
+					value: params.color,
+					type: 'color'
+				}
 			],
 			on_finish: function (params) {
-				if(config.layer.type == 'text' && params.text != ''){
+				if (config.layer.type == 'text' && params.text != '') {
 					config.layer.params.text = params.text;
+					config.layer.params.size = params.size;
+					config.layer.params.bold = params.weight;
+					config.layer.params.italic = params.italic;
+					config.layer.params.align.value = params.align;
+					config.layer.params.family.value = params.font;
+					config.layer.params.color = params.color;
+
 					config.need_render = true;
 				}
 			},
 		};
-		this.POP.show(settings);			
+	}
+
+	modify_params(params) {
+		let settings = this.create_popup_settings(params);
+		this.POP.show(settings);
 	}
 
 	render(ctx, layer) {
@@ -141,7 +211,7 @@ class Text_class extends Base_tools_class {
 		//main text
 		ctx.textAlign = align;
 		ctx.textBaseline = 'top';
-		ctx.fillStyle = layer.color;
+		ctx.fillStyle = params.color;
 		ctx.strokeStyle = layer.color;
 		ctx.lineWidth = stroke_size;
 

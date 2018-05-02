@@ -145,6 +145,7 @@ config.TOOLS = [
 				value: 'Arial',
 				values: ["Arial", "Courier", "Impact", "Helvetica", "monospace", "Times New Roman", "Verdana"],
 			},
+			color: '#000000',
 			stroke_size: 1,
 		},
 	},
@@ -227,5 +228,5 @@ config.TOOLS = [
 //link to active tool
 config.TOOL = config.TOOLS[2];
 
-	
+
 export default config;
