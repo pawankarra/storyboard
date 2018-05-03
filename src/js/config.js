@@ -138,7 +138,7 @@ config.TOOLS = [
 			italic: false,
 			stroke: false,
 			align: {
-				value: 'Left',
+				value: 'Center',
 				values: ["Left", "Center", "Right"],
 			},
 			family: {
@@ -147,7 +147,7 @@ config.TOOLS = [
 			},
 			color: '#000000',
 			stroke_size: 1,
-			rotate: 0,
+			// rotate: 0,
 		},
 	},
 	{

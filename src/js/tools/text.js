@@ -234,7 +234,6 @@ class Text_class extends Base_tools_class {
 			ctx.fillText(text, start_x, layer.y);
 		else
 			ctx.strokeText(text, start_x, layer.y);
-
 	}
 
 }
