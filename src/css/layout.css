@@ -813,8 +813,8 @@ button:focus {
 #canvas_minipaint{
 	position: absolute;
 	margin: 0 auto;
-	height: 100% !important;
-	width: 100% !important;
+	max-height: 100% !important;
+	max-width: 100% !important;
 	background: #ffffff;
 }
 .image-bar{
@@ -999,8 +999,8 @@ ul{
 	border-radius:50%;
 }
 .transparent-grid{
-	width: 100%;
-	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 	position: absolute;
 	pointer-events: none;
 	/*background: url(images/grid.png) repeat top left;*/
@@ -1075,6 +1075,6 @@ canvas{
 .upper-canvas,
 .lower-canvas {
 	position: absolute !important;
-	width: 100% !important;
-	height: 100% !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
 }
