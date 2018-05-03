@@ -147,6 +147,7 @@ config.TOOLS = [
 			},
 			color: '#000000',
 			stroke_size: 1,
+			rotate: 0,
 		},
 	},
 	{

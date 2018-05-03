@@ -158,7 +158,13 @@ class Text_class extends Base_tools_class {
 					title: "Color",
 					value: params.color,
 					type: 'color'
-				}
+				},
+				// {
+				// 	name: "rotate",
+				// 	title: "Rotate",
+				// 	value: params.rotate,
+				// 	type: 'number'
+				// }
 			],
 			on_finish: function (params) {
 				if (config.layer.type == 'text' && params.text != '') {
@@ -169,6 +175,7 @@ class Text_class extends Base_tools_class {
 					config.layer.params.align.value = params.align;
 					config.layer.params.family.value = params.font;
 					config.layer.params.color = params.color;
+					// config.layer.params.rotate = params.rotate;
 
 					config.need_render = true;
 				}
@@ -227,6 +234,7 @@ class Text_class extends Base_tools_class {
 			ctx.fillText(text, start_x, layer.y);
 		else
 			ctx.strokeText(text, start_x, layer.y);
+
 	}
 
 }
