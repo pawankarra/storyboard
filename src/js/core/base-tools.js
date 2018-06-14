@@ -35,7 +35,7 @@ class Base_tools_class {
 		//collect mouse info
 		document.addEventListener('mousedown', function (event) {
 			_this.set_mouse_info(event);
-
+			//console.log(event)
 			_this.is_drag = true;
 			_this.speed_average = 0;
 			var mouse = _this.get_mouse_info(event, true);

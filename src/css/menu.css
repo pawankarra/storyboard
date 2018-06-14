@@ -20,15 +20,15 @@
 .left_mobile_menu{left:0;}
 .right_mobile_menu{right:0;}
 
-.ddsmoothmenu{
+.ddsmoothmenu, .smoothmenu{
 	position:fixed;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.11);
 	top:0;
 	left:0;
 	width:100%;
-	font:12px Arial,sans-serif;
-	background: #2D2D2D;
-	width: 100%;
-	padding-left:10px;
+	font:1.2em Arial,sans-serif;
+	background: #FFFFFF;
+	height: 50px;
 	z-index:100;
 }
 .ddsmoothmenu ul{

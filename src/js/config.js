@@ -122,6 +122,14 @@ config.TOOLS = [
 		},
 	},
 	{
+		name: 'media2',
+		title: 'Search images',
+		on_activate: 'on_activate',
+		attributes: {
+			size: 30,
+		},
+	},
+	{
 		name: 'text',
 		title: 'Text',
 		attributes: {

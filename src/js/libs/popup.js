@@ -54,7 +54,7 @@ var template = `
 		<div id="params_content"></div>
 	</div>
 	<div class="buttons">
-		<button type="button" id="popup_ok" class="button trn">Ok</button>
+		<button type="button" id="popup_ok" class="button trn">Lookup</button>
 		<button type="button" id="popup_cancel" class="button trn">Cancel</button>
 	</div>
 `;
@@ -99,7 +99,7 @@ class Dialog_class {
 	 * @param {array} config
 	 */
 	show(config) {
-
+		console.log(config);
 		if (this.active == true) {
 			this.hide();
 		}

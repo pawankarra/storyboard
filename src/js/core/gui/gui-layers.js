@@ -104,7 +104,7 @@ class GUI_layers_class {
 			var value = layers[i];
 
 			if (value.id == config.layer.id)
-				html += '<div class="item active">';
+				html += '<div class="item active" id="template" data-name="">';
 			else
 				html += '<div class="item">';
 			if (value.visible == true)

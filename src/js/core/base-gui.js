@@ -41,7 +41,7 @@ class Base_gui_class {
 		this.grid = false;
 
 		//common image dimensions
-		this.common_dimensions = [
+		/*this.common_dimensions = [
 			[640, 480, '480p'],
 			[800, 600, 'SVGA'],
 			[1024, 768, 'XGA'],
@@ -51,7 +51,11 @@ class Base_gui_class {
 			[3840, 2160, '4K UHD'],
 				//[7680,4320, '8K UHD'],
 		];
+*/
 
+			this.common_dimensions = [
+				[380, 520, 'standard'],
+			];
 		this.GUI_tools = new GUI_tools_class(this);
 		this.GUI_preview = new GUI_preview_class(this);
 		this.GUI_colors = new GUI_colors_class(this);
@@ -105,7 +109,7 @@ class Base_gui_class {
 
 		this.prepare_canvas();
 		this.GUI_tools.render_main_tools();
-		this.GUI_preview.render_main_preview();
+		//this.GUI_preview.render_main_preview();
 		this.GUI_colors.render_main_colors();
 		this.GUI_layers.render_main_layers();
 		this.GUI_information.render_main_information();

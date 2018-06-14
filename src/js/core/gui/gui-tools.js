@@ -55,7 +55,10 @@ class GUI_tools_class {
 	render_tools() {
 		var target_id = "tools_container";
 		var _this = this;
-		var saved_tool = this.Helper.getCookie('active_tool');
+		//var saved_tool = this.Helper.getCookie('active_tool');
+		//pkarra -  making selection as default
+		var saved_tool = 'selection';
+		//console.log(saved_tool);
 		if (saved_tool != null) {
 			this.active_tool = saved_tool;
 		}
@@ -89,6 +92,7 @@ class GUI_tools_class {
 
 	activate_tool(key) {
 		//reset last
+		//console.log(key);
 		document.querySelector('#tools_container .' + this.active_tool)
 			.classList.remove("active");
 

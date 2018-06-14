@@ -22,8 +22,8 @@ class File_new_class {
 		window.State.save();
 
 		var _this = this;
-		var w = config.WIDTH;
-		var h = config.HEIGHT;
+		var w = 1000;
+		var h = 450;
 		var common_dimensions = this.Base_gui.common_dimensions;
 		var resolutions = ['Custom'];
 

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<title>miniPaint - image editor</title>
+	<meta name="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="keywords" content="photo, image, picture, transparent, layers, free, edit, html5, canvas, javascript, online, photoshop, gimp, effects, sharpen, blur, magic wand tool, clone tool, rotate, resize, photoshop online, online tools, tilt shift, sprites, keypoints" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" href="images/favicon.png?v2" />
+	<!-- Google -->
+	<meta itemprop="name" content="miniPaint" />
+	<meta itemprop="description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta itemprop="image" content="http://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="miniPaint" />
+	<meta name="twitter:description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta name="twitter:image" content="http://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<meta name="twitter:image:alt" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<!-- Facebook, Pinterest -->
+	<meta property="og:title" content="miniPaint" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://viliusle.github.io/miniPaint/" />
+	<meta property="og:image" content="http://viliusle.github.io/miniPaint/images/preview.jpg" />
+	<meta property="og:description" content="miniPaint is free online image editor using HTML5. Edit, adjust your images, add effects online in your browser, without installing anything..." />
+	<meta property="og:site_name" content="miniPaint" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="dist/bundle.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body style="background-color:#E5E9E7;">
+	<div class="wrapper">
+		
+		<div id="myNav" class="overlay left">
+			<a href="javascript:void(0)" class="closebtn">&times;</a>
+			<div class="overlay-content">
+			  <input type="text" id="search-text" placeholder="So, whats on your mind?">
+			  <button type="submit" class="searchbtn"><i class="glyphicon glyphicon-search" style="font-size:1.5em;color:#FFFFFF;margin-right:7px;"></i></button>
+			 <!-- <span class="searchbtn">&ogt;</span>-->
+			  <div class="theme-list" id="theme-list"></div>
+			</div>
+		  </div>
+		
+		  <div id="layout" class="hidden">
+			<!--Include a header DIV with the same name as the draggable DIV, followed by "header":-->
+			<div id="layoutheader">Layout Options
+				<i class="glyphicon glyphicon-remove"></i>
+			</div>
+			<div id="layoutbody"></div>
+		  </div>
+
+		<nav id="sidebar" class="active">
+		<!--	<div class="sidebar-header">
+				<strong>SN</strong>
+			</div>
+		-->
+			<ul class="list-unstyled components">
+				<li id="template">
+					<a href="#" id="layoutsearch">
+						<i class="glyphicon glyphicon-duplicate"></i>
+						Items
+					</a>
+				</li>
+				<li id="">
+						<a href="#">
+							<i class="glyphicon glyphicon-edit"></i>
+							Templates
+						</a>
+					</li>
+				<li>
+					<a href="#" id="text-search">
+						<i class="glyphicon glyphicon-text-height"></i>
+						Text
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="glyphicon glyphicon-link"></i>
+						Profile
+					</a>
+				</li>
+				<li data-toggle="modal" data-target="#exampleModalCenter">
+					<a href="#">
+						<i class="glyphicon glyphicon-cloud-upload"></i>
+						Uploads
+					</a>
+				</li>
+			</ul>
+
+			</nav>
+
+			<div class="sub-tab hidden">
+			</div>
+
+			<div class="sub-win" id="subwin-wrapper" hidden>
+					<div class="subwin-layout" id="subwin-layout">
+					</div>
+			</div>
+		
+
+			<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+					Launch demo modal
+				  </button> -->
+
+
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Upload Photos</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="modalwindow" style="margin-left:50px;">
+						<div class="left-items square">
+							<img src="/images/photo.png" height="350px" width="300px;">
+						</div>
+						<div class="right-items square">
+								<form action="#">
+									<label for="fname">Name</label>
+									<input class="inputter" type="text" id="fname" name="firstname" placeholder="Product name..">
+								
+									<label for="subject">Description</label>
+									<textarea id="subject" name="subject" placeholder="Product Description" style="height:150px"></textarea>
+								
+									<div class="" style="width:150px;float:left;">
+										<label for="lname">Price</label>
+										<input class="inputter" type="text" id="price" name="lastname" placeholder="$5.99">
+									</div>
+									<div class="" style="width:150px;float:left;margin-left:10px;">
+											<label for="lname">Quantity</label>
+											<input class="inputter" type="text" id="count" name="lastname" placeholder="10">
+										</div>
+	
+									<!--<label for="country">Country</label>
+									<select id="country" name="country">
+									  <option value="australia">Australia</option>
+									  <option value="canada">Canada</option>
+									  <option value="usa">USA</option>
+									</select> -->
+								
+									
+									<input class="submitter" type="button" value="Submit">
+								  </form>
+						</div>
+					</div>	
+				</div>
+				<div class="modal-footer">
+					<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<div class="submenu" hidden>
+			<a class="logo" href="">miniPaint</a>
+			<div class="block attributes" id="action_attributes"></div>
+			<div class="clear"></div>
+		</div>
+		
+		<div class="sidebar_left hidden" id="tools_container"></div>
+		
+		<div class="main_wrapper_new">
+			<ul class="item-list">
+				<li>
+					<div class="items-div">
+						<i class="glyphicon glyphicon-plus" style="color:#FFFFFF;font-size:2em;"></i>
+						<span data-toggle='modal' data-target=#exampleModalCenter>Add Item</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="main_wrapper hidden" id="main_wrapper">
+			<div class="canvas_wrapper" id="canvas_wrapper">
+				<div id="mouse"></div>
+				<div class="transparent-grid" id="canvas_minipaint_background"></div>
+				<canvas id="canvas_minipaint">
+					<div class="trn error">
+						Your browser does not support canvas or JavaScript is not enabled.
+					</div>
+				</canvas>
+			</div>
+<!--			<div class="canvas_wrapper1" id="canvas_wrapper1">
+				<div id="mouse"></div>
+				<div class="transparent-grid" id="canvas_minipaint_background"></div>
+				<canvas id="canvas_minipaint">
+					<div class="trn error">
+						Your browser does not support canvas or JavaScript is not enabled.
+					</div>
+				</canvas>
+			</div>-->
+		</div>
+
+		<div class="conc-view hidden">
+			<div class="lister-type">
+				<!--<span class="lister-title"></span>
+				<div class="lister-sub-title">
+					From our kitchen, ready to heat
+				</div>-->
+			</div>
+			<div class="conc-img-sticker">
+
+					<div class="main">
+						<!--	<div class="view view-first">
+								<img src="http://54.186.153.173:9000/images/florist.jpg" />
+								<div class="mask">
+									<h2>Hover Style #1</h2>
+									<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+									<a href="#" class="info">Read More</a>
+								</div>
+							</div>  
+							<div class="view view-first">
+									<img src="http://54.186.153.173:9000/images/babysitter.jpg"/>
+								<div class="mask">
+									<h2>Hover Style #1</h2>
+									<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+									<a href="#" class="info">Read More</a>
+								</div>
+							</div>  
+							<div class="view view-first">
+									<img src="http://54.186.153.173:9000/images/wine.jpg" />
+								<div class="mask">
+									<h2>Hover Style #1</h2>
+									<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+									<a href="#" class="info">Read More</a>
+								</div>
+							</div>  
+							<div class="view view-first">
+									<img src="http://54.186.153.173:9000/images/restaurant.jpg" />
+								<div class="mask">
+									<h2>Hover Style #1</h2>
+									<p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
+									<a href="#" class="info">Read More</a>
+								</div>
+							</div>  -->
+						</div>
+
+
+
+				<!--<ul class="conc-img-list">
+					<li>
+						<div class="image-info">
+							<img src="http://54.186.153.173:9000/images/europe-spring.jpg" style="height:200px;width:200px;">
+						</div>
+						<div class="data-info">
+							<h3>Europe Spring</h3>
+							<span>$39.00</span><br/>
+								<span>Availability: In stock</span><br/>
+								<input type="button" value="ADD TO CART">
+						</div>
+					</li>
+						<li>
+							<div class="image-info">
+								<img src="http://54.186.153.173:9000/images/europe-spring.jpg" style="height:200px;width:200px;">
+							</div>
+							<div class="data-info">
+								<h3>Europe Spring</h3>
+								<span>$39.00</span><br/>
+								<span>Availability: In stock</span><br/>
+								<input type="button" value="ADD TO CART">
+							</div>
+						</li>
+					</ul>	-->
+			</div>
+			<!--<div class="conc-data-sticker">
+
+			</div>-->
+		</div>
+
+		<div class="panel-wrap">
+		<div class="panel">
+			<h3>Concierge</h3>
+			<i class="glyphicon glyphicon-map-marker" style="font-size:1.3em;color:#575757"></i>
+			<div class="zipper">
+				<span class="zip"></span>
+				<i class="glyphicon glyphicon-chevron-right" style="font-size:0.8em;color:#575757"></i>
+			</div>
+			<div class="categories">
+
+			</div>
+			<!--<p>Flowers</p>
+			<img id="img-store" data-item="flowers" src="http://54.186.153.173:9000/images/florist.jpg">
+
+			<p>Distillery freegan bitters twee.  Food truck dreamcatcher PBR&amp;B chillwave brunch. </p>
+			<p>Cake & Chocolates</p>
+				<img id="img-store" data-item="wine" src="http://54.186.153.173:9000/images/cake.jpg">
+			<p>Distillery freegan bitters twee.  Food truck dreamcatcher PBR&amp;B chillwave brunch. </p>
+			<p>Baby Sitting</p>
+			<img id="img-store" data-item="babysitter" src="http://54.186.153.173:9000/images/babysitter.jpg">
+
+			<p>Distillery freegan bitters twee.  Food truck dreamcatcher PBR&amp;B chillwave brunch. </p>
+			<p>Restaurant</p>
+				<img id="img-store" data-item="restaurant" src="http://54.186.153.173:9000/images/restaurant.jpg">
+			<p>Distillery freegan bitters twee.  Food truck dreamcatcher PBR&amp;B chillwave brunch. </p>	
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p> -->
+	</div>
+		</div>
+
+
+
+		<div class="sidebar_right hidden">
+			<div class="preview block" hidden>
+				<h2 class="trn toggle" data-target="toggle_preview">Preview</h2>
+				<div id="toggle_preview"></div>
+			</div>
+			
+			<div class="colors block">
+				<h2 class="trn toggle" data-target="toggle_colors">Colors</h2>
+				<input
+					title="Click to change color" 
+					type="color" 
+					class="color_area" 
+					id="main_color" 
+					value="#0000ff"	/>
+				<div class="content" id="toggle_colors"></div>
+			</div>
+			
+			<div class="block" id="info_base" hidden>
+				<h2 class="trn toggle toggle-full" data-target="toggle_info">Information</h2>
+				<div class="content" id="toggle_info"></div>
+			</div>
+			
+			<div class="details block" id="details_base" hidden>
+				<h2 class="trn toggle toggle-full" data-target="toggle_details">Layer details</h2>
+				<div class="content" id="toggle_details"></div>
+			</div>
+			
+			<div class="layers block" >
+				<h2 class="trn">Layers</h2>
+				<div class="content" id="layers_base"></div>
+			</div>
+		</div>
+	</div>
+	<div class="mobile_menu">
+		<button class="right_mobile_menu" id="mobile_menu_button" type="button"></button>
+	</div>
+	<div class="ddsmoothmenu" id="main_menu"></div>
+	<div class="smoothmenu" id="nav_menu">
+		<div id="product-logo" style="float:left;">
+			<img src="/images/layers.png">
+		</div>
+		<div id="blank" style="width:20%;float:left;border:1px solid #FFFFFF;">
+		</div>
+		<div class="tab-center">
+			<ul>
+				<li>
+					<a href="#" id="savefile">
+						<i class="glyphicon glyphicon-floppy-disk"></i>
+							Save
+					</a>
+				</li>
+				<li>
+					<a href="#" id="undo">
+						<i class="glyphicon glyphicon-repeat"></i>
+							Undo
+					</a>
+				</li>
+				<li>
+					<a href="#" id="redo">
+						<i class="glyphicon glyphicon-refresh" ></i>
+							Redo
+					</a>
+				</li>
+				<li>
+					<a href="#" id="newtemplate">
+						<i class="glyphicon glyphicon-resize-small"></i>
+							Resize
+					</a>
+				</li>
+				<li>
+					<a href="#" id="newtemplate">
+						<i class="glyphicon glyphicon-download-alt"></i>
+							Download
+					</a>
+				</li>			
+				<li>
+					<a href="#" id="newtemplate">
+						<i class="glyphicon glyphicon-send"></i>
+							Share
+					</a>
+				</li>
+				<li>
+					<a href="#" id="printemplate">
+						<i class="glyphicon glyphicon-print"></i>
+							Print
+					</a>
+				</li>
+				<li id="checkoutbutton" data-toggle="modal" data-target="#exampleModalCenter">
+						<a href="#" id="printemplate">
+							<i class="glyphicon glyphicon-shopping-cart"></i>
+								Checkout
+						</a>
+					</li>
+			</ul>
+		</div>
+		<div class="tab-right">
+				<ul>
+					<li>
+						<div class="l-btn">
+							<span>Help</span>
+							<i class="glyphicon glyphicon-chevron-down" id="btn"></i>
+						</div>
+					</li>
+					<li>
+							<div class="r-btn">
+								<span>My Account</span>
+								<i class="glyphicon glyphicon-chevron-down" id="btn"></i>
+							</div>
+						</li>
+				</ul>	
+		</div>	
+	</div>
+
+		
+
+
+	<div class="hidden" id="tmp"></div>
+	<div id="popup"></div>
+</body>
+</html>

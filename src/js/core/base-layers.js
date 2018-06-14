@@ -322,7 +322,6 @@ class Base_layers_class {
 				}
 				layer[i] = settings[i];
 			}
-
 			//prepare image
 			if (layer.type == 'image') {
 
@@ -341,12 +340,13 @@ class Base_layers_class {
 							layer.height = layer.data.height;
 						layer.link = layer.data.cloneNode(true);
 						layer.data = null;
-						need_autoresize = true;
+						need_autoresize = false;
 					}
 					else if (typeof layer.data == 'string') {
 						//try loading as imageData
 						resolvable = true;
 						layer.link = new Image();
+						layer.link.crossOrigin = 'Anonymous';
 						layer.link.onload = function () {
 							//update dimensions
 							if (layer.width == 0)
@@ -358,7 +358,6 @@ class Base_layers_class {
 							if (layer.height_original == null)
 								layer.height_original = layer.height;
 							//free data
-
 							layer.data = null;
 							_this.autoresize(layer.width, layer.height, layer.id, can_automate);
 							_this.render();
@@ -483,6 +482,17 @@ class Base_layers_class {
 		}
 		alertify.error('Error: can not find layer with id:' + id);
 		return null;
+	}
+
+	/**
+	 * returns layer
+	 * 
+	 * @param {int} id
+	 * @returns {object}
+	 */
+	get_config() {
+		alertify.error('Error: can not find layer with id:' );
+		return config.layers;
 	}
 
 	/**

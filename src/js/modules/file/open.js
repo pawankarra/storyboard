@@ -243,8 +243,9 @@ class File_open_class {
 	}
 
 	//handler for open url. Example url: http://i.imgur.com/ATda8Ae.jpg
-	file_open_url_handler(user_response) {
+	file_open_url_handler(user_response,updated) {
 		var _this = this;
+		console.log('pkarra',config.layer.id);
 		var url = user_response.url;
 		if (url == '')
 			return;
@@ -254,20 +255,43 @@ class File_open_class {
 		var img = new Image();
 		img.crossOrigin = "Anonymous";
 		img.onload = function () {
+			if(updated == 'new'){
 			var new_layer = {
 				name: layer_name,
 				type: 'image',
 				link: img,
-				width: img.width,
-				height: img.height,
+				//width: img.width,
+				//height: img.height,
+				width: 300,
+				height: 300,
 				width_original: img.width,
 				height_original: img.height,
 			};
-			img.onload = function () {
+			/*img.onload = function () {
 				config.need_render = true;
-			};
+			};*/
 			_this.Base_layers.insert(new_layer);
-			_this.Base_layers.autoresize(img.width, img.height);
+			//_this.Base_layers.autoresize(img.width, img.height);
+		}else{
+			console.log(_this.Base_layers.get_layer());
+			var new_layer = {
+				name: layer_name,
+				//name: _this.Base_layers.get_layer().name,
+				type: 'image',
+				link: img,
+				//width: img.width,
+				//height: img.height,
+				width: _this.Base_layers.get_layer().width,
+				height: _this.Base_layers.get_layer().height,
+				width_original: img.width,
+				height_original: img.height,
+				x:_this.Base_layers.get_layer().x,
+				y:_this.Base_layers.get_layer().y,
+				//id:10,
+			};
+			_this.Base_layers.delete(_this.Base_layers.get_layer().id, true);
+			_this.Base_layers.insert(new_layer);
+			}
 		};
 		img.onerror = function (ex) {
 			alertify.error('Sorry, image could not be loaded. Try copy image and paste it.');
@@ -331,12 +355,17 @@ class File_open_class {
 					}
 				}
 			}
-
 			this.Base_layers.insert(value, false);
+			//var exif_data = _this.extract_exif(this.file);	
+			//console.log("~~~~~~~~~~~",exif_data);
 		}
+		//console.log("=======>",json.info.layer_active);
 		if(json.info.layer_active != undefined) {
 			this.Base_layers.select(json.info.layer_active);
 		}
+		var element = document.getElementById("template"); 
+		element.setAttribute("data-name", json.info.id);
+		console.log(element);
 	}
 
 	extract_exif(object) {
