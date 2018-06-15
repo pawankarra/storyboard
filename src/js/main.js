@@ -204,7 +204,7 @@ window.addEventListener('load', function (e) {
 							html+="<div class='view view-first'>";
 							html+="<img src="+obj[i].icon+" />";
 							html+="<div class='mask'><h2>"+obj[i].category+"</h2><p>"+obj[i].desc+"</p>";
-							html+="<a href='#' data-name="+obj[i].category+" data-toggle='modal' data-target=#exampleModalCenter class='info'>Explore Options</a></div></div>";
+							html+="<a href='#' data-name="+obj[i].category+" data-toggle='modal' data-target=#exampleModalCenter1 class='info'>Explore Options</a></div></div>";
 							/*console.log(obj[i].icon);
 							html+="<li data-item="+obj[i].category+"><p>"+obj[i].category+"</p>";
 							html+="<img src='"+obj[i].icon+"'>";
@@ -283,7 +283,7 @@ window.addEventListener('load', function (e) {
 							html+='<li><div class="image-info"><img style="height:210px;width:250px;" src='+obj[key][i].url+'></div>';
 							html+='<div class="data-info" style=""><span class="item-title">'+obj[key][i].name+'</span><br/><span class="item-desc">'+obj[key][i].desc+'</span>';
 							html+='<div class="price-tag"><span>'+price[0]+'</span><sup>'+price[1]+'</sup></div>';
-							html+='<div id="conc-selection" data-toggle="modal" data-type="'+itemname.toLowerCase()+'" data-target="#exampleModalCenter" data-desc="'+obj[key][i].desc+'" data-name="'+obj[key][i].name+'" data-price="'+obj[key][i].price+'" data-url="'+obj[key][i].url+'" data-property="'+obj[key][i].property+'"><span>Add to Cart</span></div></div></li>';
+							html+='<div id="conc-selection" data-toggle="modal" data-type="'+itemname.toLowerCase()+'" data-desc="'+obj[key][i].desc+'" data-name="'+obj[key][i].name+'" data-price="'+obj[key][i].price+'" data-url="'+obj[key][i].url+'" data-property="'+obj[key][i].property+'"><span>Add to Cart</span></div></div></li>';
 						}
 					}
 				}
